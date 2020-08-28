@@ -1,4 +1,5 @@
 const rankTest = require('ava');
+const {voyageRisk} = require("../src/rank");
 const {voyageProfitFactor} = require("../src/rank");
 
 const history = [
@@ -40,4 +41,14 @@ rankTest('given voyage with east-indies and history length over 14 when voyagePr
   }
   let result = voyageProfitFactor(voyage, history);
   t.is(result,4);
+})
+
+rankTest('given voyage with east-indies and length 10 when voyageRisk return 9', t => {
+  const voyage = {
+    zone: 'east-indies',
+    length: 10,
+  };
+
+  let result = voyageRisk(voyage);
+  t.is(result,9);
 })
