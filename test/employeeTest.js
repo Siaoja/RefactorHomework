@@ -1,10 +1,10 @@
 const employeeTest = require('ava');
+const {Employee} = require("../src/employee");
 
-employeeTest('foo', t => {
-    t.pass();
-});
+employeeTest('employee: given employee with name spike and type engineer when toString return employee info', t => {
+    let employee;
+    employee = new Employee('spike', 'engineer');
+    t.is(employee.toString(), 'spike (engineer)');
 
-employeeTest('bar', async t => {
-    const bar = Promise.resolve('bar');
-    t.is(await bar, 'bar');
-});
+})
+
