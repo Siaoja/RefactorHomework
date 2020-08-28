@@ -8,3 +8,13 @@ employeeTest('employee: given employee with name spike and type engineer when to
 
 })
 
+
+employeeTest('employee: given employee with name spike and type unknown when new Employee throw error ', t => {
+    let employee;
+    try {
+        new Employee('spike', 'unknown');
+        t.fail();
+    } catch (e) {
+        t.is(e.message,'Employee cannot be of type unknown' );
+    }
+})
