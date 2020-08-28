@@ -1,15 +1,25 @@
-function voyageRisk (voyage) {
-  let result = 1;
+function screenVoyageZone(voyage) {
+  return [
+    'china',
+    'east-indies',
+  ].includes(voyage.zone);
+}
+
+function calculateRiskByVoyageLength(voyage) {
+  let result = 0;
   if (voyage.length > 4) {
     result += 2;
   }
   if (voyage.length > 8) {
     result += voyage.length - 8;
   }
-  if ([
-    'china',
-    'east-indies',
-  ].includes(voyage.zone)) {
+  return result;
+}
+
+function voyageRisk (voyage) {
+  let result = 1;
+  result += calculateRiskByVoyageLength(voyage);
+  if (screenVoyageZone(voyage)) {
     result += 4;
   }
   return Math.max(result, 0);
