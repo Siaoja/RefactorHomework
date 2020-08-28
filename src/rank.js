@@ -73,14 +73,13 @@ function generateData(voyage, history) {
   return {vpf, vr, chr};
 }
 
-function rating (voyage, history) {
+function generateRatingResult(voyage, history) {
   const {vpf, vr, chr} = generateData(voyage, history);
-  if (vpf * 3 > (vr + chr * 2)) {
-    return 'A';
-  }
-  else {
-    return 'B';
-  }
+  return (vpf * 3 > (vr + chr * 2)) ? 'A':'B';
+}
+
+function rating (voyage, history) {
+  return generateRatingResult(voyage, history);
 }
 
 module.exports = {
