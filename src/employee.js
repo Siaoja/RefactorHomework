@@ -6,11 +6,7 @@ class Employee {
   }
 
   validateType (type) {
-    if (![
-      'engineer',
-      'manager',
-      'salesman',
-    ].includes(type)) {
+    if (!legalTypes.includes(type)) {
       throw new Error(`Employee cannot be of type ${type}`);
     }
   }
@@ -23,3 +19,9 @@ class Employee {
 module.exports = {
   Employee
 }
+
+const legalTypes = [
+  'engineer',
+  'manager',
+  'salesman',
+]
