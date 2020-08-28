@@ -1,10 +1,14 @@
+function isIncludeMAOrCT(anOrder) {
+  return [
+    'MA',
+    'CT',
+  ].includes(anOrder.deliveryState);
+}
+
 function deliveryDate (anOrder, isRush) {
   if (isRush) {
     let deliveryTime;
-    if ([
-      'MA',
-      'CT',
-    ].includes(anOrder.deliveryState)) {
+    if (isIncludeMAOrCT(anOrder)) {
       deliveryTime = 1;
     }
     else if ([
