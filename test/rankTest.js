@@ -20,14 +20,16 @@ const history = [
   },
 ];
 
+for(let i = 0; i < 20; i++){
+  history.push({});
+}
+
 rankTest('given voyage with china and history length over 18 when voyageProfitFactor return 7', t => {
   const voyage = {
     zone: 'china',
     length: 10,
   };
-  for(let i = 0; i < 20; i++){
-    history.push({});
-  }
+
   let result = voyageProfitFactor(voyage, history);
   t.is(result,7);
 })
@@ -37,9 +39,6 @@ rankTest('given voyage with east-indies and history length over 14 when voyagePr
     zone: 'east-indies',
     length: 10,
   };
-  for(let i = 0; i < 14; i++){
-    history.push({});
-  }
   let result = voyageProfitFactor(voyage, history);
   t.is(result,4);
 })
