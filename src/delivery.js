@@ -12,18 +12,21 @@ function isIncludeNYOrNH(anOrder) {
   ].includes(anOrder.deliveryState);
 }
 
+function calculateDeliveryTimeIsRush(anOrder) {
+  let deliveryTime;
+  if (isIncludeMAOrCT(anOrder)) {
+    deliveryTime = 1;
+  } else if (isIncludeNYOrNH(anOrder)) {
+    deliveryTime = 2;
+  } else {
+    deliveryTime = 3;
+  }
+  return deliveryTime;
+}
+
 function deliveryDate (anOrder, isRush) {
   if (isRush) {
-    let deliveryTime;
-    if (isIncludeMAOrCT(anOrder)) {
-      deliveryTime = 1;
-    }
-    else if (isIncludeNYOrNH(anOrder)) {
-      deliveryTime = 2;
-    }
-    else {
-      deliveryTime = 3;
-    }
+    let deliveryTime = calculateDeliveryTimeIsRush(anOrder);
     return anOrder.placedOn.plusDays(1 + deliveryTime);
   }
   else {
