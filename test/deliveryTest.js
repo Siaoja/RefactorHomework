@@ -77,3 +77,18 @@ deliveryTest('deliveryDate given anOrder with MH and isRush with false return 5'
     let result = deliveryDate(anOrder, isRush);
     t.is(result, 5);
 })
+
+deliveryTest('deliveryDate given anOrder with UNKNOW and isRush with false return 6', t => {
+    let isRush = false;
+    let anOrder = {
+        deliveryState: 'UNKNOW',
+        placedOn: {
+            plusDays: (plusDeliveryTime) => {
+                return plusDeliveryTime;
+            }
+        }
+    };
+
+    let result = deliveryDate(anOrder, isRush);
+    t.is(result, 6);
+})
