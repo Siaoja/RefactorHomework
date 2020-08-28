@@ -32,6 +32,13 @@ function isIncludeMAOrCTOrNY(anOrder) {
   ].includes(anOrder.deliveryState);
 }
 
+function isIncludeMEOrNH(anOrder) {
+  return [
+    'ME',
+    'NH',
+  ].includes(anOrder.deliveryState);
+}
+
 function deliveryDate (anOrder, isRush) {
   if (isRush) {
     let deliveryTime = calculateDeliveryTimeIsRush(anOrder);
@@ -42,10 +49,7 @@ function deliveryDate (anOrder, isRush) {
     if (isIncludeMAOrCTOrNY(anOrder)) {
       deliveryTime = 2;
     }
-    else if ([
-      'ME',
-      'NH',
-    ].includes(anOrder.deliveryState)) {
+    else if (isIncludeMEOrNH(anOrder)) {
       deliveryTime = 3;
     }
     else {
