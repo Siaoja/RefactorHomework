@@ -45,3 +45,19 @@ deliveryTest('deliveryDate given anOrder with ME and isRush with true return 4',
     let result = deliveryDate(anOrder, isRush);
     t.is(result, 4);
 })
+
+
+deliveryTest('deliveryDate given anOrder with CT and isRush with false return 4', t => {
+    let isRush = false;
+    let anOrder = {
+        deliveryState: 'CT',
+        placedOn: {
+            plusDays: (plusDeliveryTime) => {
+                return plusDeliveryTime;
+            }
+        }
+    };
+
+    let result = deliveryDate(anOrder, isRush);
+    t.is(result, 4);
+})
