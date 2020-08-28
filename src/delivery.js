@@ -39,22 +39,25 @@ function isIncludeMEOrNH(anOrder) {
   ].includes(anOrder.deliveryState);
 }
 
+function calculateDeliveryTimeNotRush(anOrder) {
+  let deliveryTime;
+  if (isIncludeMAOrCTOrNY(anOrder)) {
+    deliveryTime = 2;
+  } else if (isIncludeMEOrNH(anOrder)) {
+    deliveryTime = 3;
+  } else {
+    deliveryTime = 4;
+  }
+  return deliveryTime;
+}
+
 function deliveryDate (anOrder, isRush) {
   if (isRush) {
     let deliveryTime = calculateDeliveryTimeIsRush(anOrder);
     return anOrder.placedOn.plusDays(1 + deliveryTime);
   }
   else {
-    let deliveryTime;
-    if (isIncludeMAOrCTOrNY(anOrder)) {
-      deliveryTime = 2;
-    }
-    else if (isIncludeMEOrNH(anOrder)) {
-      deliveryTime = 3;
-    }
-    else {
-      deliveryTime = 4;
-    }
+    let deliveryTime = calculateDeliveryTimeNotRush(anOrder);
     return anOrder.placedOn.plusDays(2 + deliveryTime);
   }
 }
