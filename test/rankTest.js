@@ -146,3 +146,14 @@ rankTest('given voyage with china and history when rating return B', t => {
     t.is(result, expect);
 });
 
+
+
+rankTest('given voyage with east-indies and history when rating return A', t => {
+    const voyage = {
+        zone: 'east-indies',
+        length: 1,
+    };
+    const result = rating(voyage, history);
+    const expect = 'A';
+    t.is(result, expect);
+});
